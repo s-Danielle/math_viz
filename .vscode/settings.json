@@ -1,0 +1,12 @@
+{
+  "dart.flutterSdkPath": "/Users/daniella/flutter",
+  "editor.formatOnSave": true,
+  "[dart]": {
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.rulers": [80]
+  },
+  "files.exclude": {
+    "**/.dart_tool": true,
+    "**/build": true
+  }
+}
