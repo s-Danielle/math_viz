@@ -1,32 +1,14 @@
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
 
-void main() {
-  runApp(const MathVizApp());
-}
+import 'app.dart';
+import 'core/audio/audio_service.dart';
+import 'core/settings/settings_controller.dart';
 
-class MathVizApp extends StatelessWidget {
-  const MathVizApp({super.key});
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Math Viz',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1565C0),
-          brightness: Brightness.light,
-        ),
-        useMaterial3: true,
-        cardTheme: CardThemeData(
-          elevation: 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-        ),
-        appBarTheme: const AppBarTheme(centerTitle: true),
-      ),
-      home: const HomeScreen(),
-    );
-  }
+  final settings = await SettingsController.create();
+  await AudioService.instance.init(settings: settings);
+
+  runApp(ParadoxLabApp(settings: settings));
 }
